@@ -11,4 +11,4 @@ let obj = {
   'asoifweiofjiowejfiowjfiowejfio': 3
 }
 
-console.log(numbers, obj)
+console.log(Array.isArray(numbers), Array.isArray(obj))

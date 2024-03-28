@@ -9,7 +9,14 @@ let input = []
 
 rl.on("line", (line) => {
   input = line.split(' ').map(el => parseInt(el)); // 1 2 3 4
-  console.log(fetma(input[0]))
+  let list = []
+  for (let i = 2; i < input[0]; i++) {
+    if (Fermat(i)) {
+      console.log(i)
+      list.push(i)
+    }
+  }
+  console.log(list.length)
   rl.close();
 });
 
@@ -20,14 +27,14 @@ rl.on('close', () => {
   process.exit();
 })
 
-function fetma(value) {
-  let tmp = value;
+function Fermat(p) {
+  let a = p;
   while (true) {
-    tmp = (tmp + tmp % 2) / 2;
-    if (tmp === 1) {
+    a = (a - a % 2) / 2;
+    if (a === 1) {
       break;
     }
-    let powed = (BigInt(tmp) ** BigInt(value - 1)) % BigInt(value)
+    let powed = (BigInt(a) ** BigInt(p - 1)) % BigInt(p)
     if (powed !== 1n) {
       return false;
     }

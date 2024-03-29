@@ -10,7 +10,7 @@ let input = []
 rl.on("line", (line) => {
   input = line.split(' ').map(el => parseInt(el)); // 1 2 3 4
   let list = []
-  for (let i = 2; i < input[0]; i++) {
+  for (let i = 2; i <= input[0]; i++) {
     if (Fermat(i)) {
       console.log(i)
       list.push(i)

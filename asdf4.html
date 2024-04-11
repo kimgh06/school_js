@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>asdfasdf</title>
+</head>
+
+<body>
+  <div id="A">
+    <h1>A</h1>
+  </div>
+  <div id="B">
+    <h2>B</h2>
+  </div>
+  <div class="del">
+    <h2>없어진당</h2>
+  </div>
+</body>
+
+<script>
+  // const divs = document.querySelectorAll('body > div')
+  // divs.forEach((d, i) => {
+  //   const v = i * 10;
+  //   d.style.backgroundColor = `rgba(${v},${v}, ${v})`;
+  //   d.style.height = '10px';
+  // })
+
+  const A = document.querySelector('#A');
+  const B = document.querySelector('#B');
+  const h1 = document.createElement('h1');
+  h1.textContent = 'asdfasdfasd';
+
+  const toA = e => {
+    A.appendChild(h1);
+    setInterval(toB, 1000);
+  }
+  const toB = e => {
+    B.appendChild(h1);
+    setInterval(toA, 1000);
+  }
+  toA();
+
+  setTimeout(() => {
+    const del = document.querySelector('h2')
+    document.querySelector('.del').removeChild(del)
+  }, 2000);
+</script>
+
+</html>

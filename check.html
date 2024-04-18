@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>checklist</title>
+</head>
+
+<body>
+  <form class="form">
+    <input class="input" />
+    <button>check</button>
+  </form>
+  <ul>
+
+  </ul>
+  <script>
+    let list = localStorage.getItem('list').split(',') || [];
+    const ul = document.querySelector('ul')
+    function create(text) {
+      const li = document.createElement('li')
+      const button = document.createElement('button')
+      button.onclick = e => {
+        ul.removeChild(li);
+        list = list.filter(e => e !== text);
+        localStorage.setItem('list', list)
+      }
+      button.innerHTML = 'x'
+      li.innerHTML = text + '<input type="checkbox"></input>';
+      li.appendChild(button);
+      ul.appendChild(li)
+
+    }
+    for (let i in list) {
+      create(list[i])
+    }
+    function pushes(e) {
+      e.preventDefault();
+      const text = document.getElementsByClassName('input')[0].value;
+      if (!text) {
+        return
+      }
+      list.push(text)
+      create(text)
+      console.log(list, ul)
+      document.getElementsByClassName('input')[0].value = '';
+      localStorage.setItem('list', list)
+    }
+    document.addEventListener('submit', pushes)
+  </script>
+</body>
+
+</html>

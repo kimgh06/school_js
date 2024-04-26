@@ -18,22 +18,25 @@
   <script>
     let list = localStorage.getItem('list').split(',') || [];
     const ul = document.querySelector('ul')
-    function create(text) {
+    function create(text, i) {
       const li = document.createElement('li')
       const button = document.createElement('button')
       button.onclick = e => {
         ul.removeChild(li);
-        list = list.filter(e => e !== text);
+        list = list.splice(i)
+        console.log(list)
         localStorage.setItem('list', list)
       }
       button.innerHTML = 'x'
-      li.innerHTML = text + '<input type="checkbox"></input>';
+      li.innerHTML = text
+      // + '<input type="checkbox"></input>';
       li.appendChild(button);
+      li.className = i;
       ul.appendChild(li)
 
     }
     for (let i in list) {
-      create(list[i])
+      create(list[i], i)
     }
     function pushes(e) {
       e.preventDefault();
@@ -43,7 +46,6 @@
       }
       list.push(text)
       create(text)
-      console.log(list, ul)
       document.getElementsByClassName('input')[0].value = '';
       localStorage.setItem('list', list)
     }

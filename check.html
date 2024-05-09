@@ -23,8 +23,7 @@
       const button = document.createElement('button')
       button.onclick = e => {
         ul.removeChild(li);
-        list = list.splice(i)
-        console.log(list)
+        list = list.filter(e => e != text)
         localStorage.setItem('list', list)
       }
       button.innerHTML = 'x'
@@ -33,15 +32,17 @@
       li.appendChild(button);
       li.className = i;
       ul.appendChild(li)
-
     }
     for (let i in list) {
+      if (list[i] === '') {
+        continue;
+      }
       create(list[i], i)
     }
     function pushes(e) {
       e.preventDefault();
       const text = document.getElementsByClassName('input')[0].value;
-      if (!text) {
+      if (!text || list.indexOf(text) !== -1) {
         return
       }
       list.push(text)

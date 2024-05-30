@@ -22,6 +22,9 @@
       const li = document.createElement('li')
       const button = document.createElement('button')
       button.onclick = e => {
+        if (!confirm('Would you like to delete this? : ' + text)) {
+          return;
+        }
         ul.removeChild(li);
         list = list.filter(e => e != text)
         localStorage.setItem('list', list)
